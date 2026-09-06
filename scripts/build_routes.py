@@ -99,4 +99,22 @@ for f in OUT_DIR.glob("*.geojson"):
     if f.name not in keep: f.unlink()
 
 (OUT_DIR/"routes.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+# Generate a maintainer helper page with ready-to-copy deep links for Blogger.
+base_url = "https://onlinewanderer.github.io/Wander-Atlas/"
+lines = [
+    "# Wander Atlas – Blogger links",
+    "",
+    "Kopieer de link van de wandeling die je in een Blogger-post wilt gebruiken.",
+    ""
+]
+for item in manifest:
+    key = Path(item["gpx"]).stem.lower()
+    lines += [
+        f'## {item["name"]}',
+        f'{base_url}?route={key}',
+        ""
+    ]
+Path("BLOGGER-LINKS.md").write_text("\n".join(lines), encoding="utf-8")
+
 print(f"Built {len(manifest)} route(s).")
