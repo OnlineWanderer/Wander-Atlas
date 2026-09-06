@@ -48,5 +48,15 @@
     "ascent": "170 m",
     "blog": "",
     "komoot": ""
+  },
+  {
+    "file": "monthferland.geojson",
+    "gpx": "monthferland.gpx",
+    "name": "Montferland Wandelen",
+    "date": "2026-09-05",
+    "distance": "12.90 km",
+    "ascent": "305 m",
+    "blog": "",
+    "komoot": ""
   }
 ]
