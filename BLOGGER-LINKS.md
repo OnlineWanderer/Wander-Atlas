@@ -18,4 +18,4 @@ https://onlinewanderer.github.io/Wander-Atlas/?route=foresttoforest
 https://onlinewanderer.github.io/Wander-Atlas/?route=midzomeravond
 
 ## Montferland Wandelen
-https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
+https://onlinewanderer.github.io/Wander-Atlas/?route=montferland
