@@ -1,16 +1,22 @@
 [
   {
     "file": "monthferland.geojson",
-    "name": "Monthferland",
+    "gpx": "Monthferland.gpx",
+    "name": "Montferland",
     "date": "2026-09-05",
     "distance": "12.90 km",
-    "ascent": "161 m"
+    "ascent": "161 m",
+    "blog": "",
+    "komoot": ""
   },
   {
     "file": "midzomeravond.geojson",
+    "gpx": "midzomeravond.gpx",
     "name": "Midzomeravond",
     "date": "2026-06-21",
     "distance": "19.87 km",
-    "ascent": "170 m"
+    "ascent": "170 m",
+    "blog": "",
+    "komoot": ""
   }
 ]
