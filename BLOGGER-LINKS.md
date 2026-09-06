@@ -8,6 +8,9 @@ https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
 ## conquest of the N70
 https://onlinewanderer.github.io/Wander-Atlas/?route=conquestofn70
 
+## fen to fen
+https://onlinewanderer.github.io/Wander-Atlas/?route=fentofen
+
 ## forest to forest
 https://onlinewanderer.github.io/Wander-Atlas/?route=foresttoforest
 
