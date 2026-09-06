@@ -5,6 +5,9 @@ Kopieer de link van de wandeling die je in een Blogger-post wilt gebruiken.
 ## Montferland
 https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
 
+## bridge to bridge
+https://onlinewanderer.github.io/Wander-Atlas/?route=bridgetobridge
+
 ## Conquest of the n70
 https://onlinewanderer.github.io/Wander-Atlas/?route=conquestofn70
 
