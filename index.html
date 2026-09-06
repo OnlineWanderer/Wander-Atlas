@@ -12,9 +12,12 @@ header{padding:12px 18px;background:rgba(255,255,255,.97);border-bottom:1px soli
 .brand{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.65}
 h1{font-size:25px;margin:2px 0 0}.tag{font-size:12px;opacity:.65;margin-top:2px}
 #map{flex:1;min-height:520px}
-.route-card{min-width:205px;line-height:1.45}.route-card h2{margin:0 0 7px;font-size:18px}
+.route-card{min-width:220px;line-height:1.45}.route-card h2{margin:0 0 7px;font-size:18px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:7px 0}
 .stat{background:#f6f7f8;border-radius:8px;padding:7px}.stat b{display:block}.stat span{font-size:10px;opacity:.65;text-transform:uppercase}
+.links{display:flex;flex-direction:column;gap:6px;margin-top:11px}
+.links a{display:block;text-decoration:none;border:1px solid #d8dce2;border-radius:8px;padding:7px 9px;color:#202124;font-weight:600}
+.links a:hover{background:#f6f7f8}
 @media(max-width:600px){header{padding:10px 13px}h1{font-size:21px}}
 </style>
 </head>
@@ -31,26 +34,34 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 const allBounds=L.latLngBounds();
 const routeColors=['#087DFF','#E63946','#8A2BE2','#FF7A00','#00A86B','#D81B60','#00A6A6','#6A5ACD'];
 
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
 async function loadAtlas(){
- const res=await fetch('routes/routes.json');
+ const res=await fetch('routes/routes.json?v='+Date.now());
  if(!res.ok) throw new Error('routes.json kon niet worden geladen');
  const routes=await res.json();
 
  for(let i=0;i<routes.length;i++){
    const meta=routes[i];
-   const r=await fetch('routes/'+meta.file);
+   const r=await fetch('routes/'+encodeURIComponent(meta.file)+'?v='+Date.now());
    if(!r.ok) continue;
    const data=await r.json();
    const color=routeColors[i%routeColors.length];
 
-   // White casing keeps every route visible over forests, roads and towns.
    L.geoJSON(data,{style:{color:'#fff',weight:10,opacity:.95}}).addTo(map);
-   const layer=L.geoJSON(data,{style:{color:color,weight:6,opacity:1}}).addTo(map);
+   const layer=L.geoJSON(data,{style:{color,weight:6,opacity:1}}).addTo(map);
 
-   const popup=`<div class="route-card"><h2>${meta.name}</h2>
-     <div class="stats"><div class="stat"><b>${meta.distance||'—'}</b><span>Distance</span></div>
-     <div class="stat"><b>${meta.ascent||'—'}</b><span>Ascent</span></div></div>
-     <div>${meta.date||''}</div></div>`;
+   let links='<div class="links">';
+   if(meta.blog) links+=`<a href="${esc(meta.blog)}" target="_blank" rel="noopener">📝 Read the blog post</a>`;
+   if(meta.komoot) links+=`<a href="${esc(meta.komoot)}" target="_blank" rel="noopener">🗺️ View on Komoot</a>`;
+   if(meta.gpx) links+=`<a href="gpx/${encodeURIComponent(meta.gpx)}" download>⬇️ Download GPX</a>`;
+   links+='</div>';
+
+   const popup=`<div class="route-card"><h2>${esc(meta.name)}</h2>
+     <div class="stats"><div class="stat"><b>${esc(meta.distance||'—')}</b><span>Distance</span></div>
+     <div class="stat"><b>${esc(meta.ascent||'—')}</b><span>Ascent</span></div></div>
+     <div>${esc(meta.date||'')}</div>${links}</div>`;
+
    layer.bindPopup(popup);
    allBounds.extend(layer.getBounds());
  }

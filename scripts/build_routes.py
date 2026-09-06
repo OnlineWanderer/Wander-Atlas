@@ -1,10 +1,10 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import json, math, re
-from datetime import datetime
 
 GPX_DIR = Path("gpx")
 OUT_DIR = Path("routes")
+INFO_FILE = Path("route-info.json")
 OUT_DIR.mkdir(exist_ok=True)
 
 def local(tag):
@@ -22,16 +22,20 @@ def haversine(a, b):
     h = math.sin(dlat/2)**2 + math.cos(lat1)*math.cos(lat2)*math.sin(dlon/2)**2
     return 2*R*math.asin(math.sqrt(h))
 
+info = {}
+if INFO_FILE.exists():
+    try:
+        info = json.loads(INFO_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        info = {}
+
 manifest = []
 
 for gpx in sorted(GPX_DIR.glob("*.gpx")):
     root = ET.parse(gpx).getroot()
-    points = []
-    name = gpx.stem
-    date = ""
-    elevations = []
+    points, elevations = [], []
+    name, date = gpx.stem, ""
 
-    # Prefer track name if Garmin supplied one.
     for el in root.iter():
         if local(el.tag) == "name" and el.text and el.text.strip():
             name = el.text.strip()
@@ -40,10 +44,8 @@ for gpx in sorted(GPX_DIR.glob("*.gpx")):
     for pt in root.iter():
         if local(pt.tag) != "trkpt":
             continue
-        lat = float(pt.attrib["lat"])
-        lon = float(pt.attrib["lon"])
-        ele = None
-        time = None
+        lat, lon = float(pt.attrib["lat"]), float(pt.attrib["lon"])
+        ele, time = None, None
         for child in pt:
             if local(child.tag) == "ele" and child.text:
                 try: ele = float(child.text)
@@ -56,54 +58,45 @@ for gpx in sorted(GPX_DIR.glob("*.gpx")):
             date = time[:10]
 
     if len(points) < 2:
-        print(f"Skipping {gpx}: fewer than 2 track points")
         continue
 
     distance_m = sum(haversine(points[i-1], points[i]) for i in range(1, len(points)))
-    ascent = 0.0
-    prev = None
+    ascent, prev = 0.0, None
     for ele in elevations:
-        if ele is None:
-            continue
-        if prev is not None and ele > prev:
-            ascent += ele - prev
+        if ele is None: continue
+        if prev is not None and ele > prev: ascent += ele-prev
         prev = ele
 
     slug = safe_slug(gpx.stem)
     out_name = slug + ".geojson"
+    extra = info.get(gpx.name, {})
+
     feature = {
-        "type": "Feature",
-        "properties": {
-            "name": name,
+        "type":"Feature",
+        "properties":{
+            "name": extra.get("title") or name,
             "date": date,
             "distance": f"{distance_m/1000:.2f} km",
             "ascent": f"{round(ascent):.0f} m"
         },
-        "geometry": {
-            "type": "LineString",
-            "coordinates": [[lon, lat] for lat, lon in points]
-        }
+        "geometry":{"type":"LineString","coordinates":[[lon,lat] for lat,lon in points]}
     }
-    (OUT_DIR / out_name).write_text(
-        json.dumps(feature, ensure_ascii=False, separators=(",", ":")),
-        encoding="utf-8"
-    )
+    (OUT_DIR/out_name).write_text(json.dumps(feature, ensure_ascii=False, separators=(",",":")), encoding="utf-8")
+
     manifest.append({
         "file": out_name,
-        "name": name,
+        "gpx": gpx.name,
+        "name": extra.get("title") or name,
         "date": date,
         "distance": f"{distance_m/1000:.2f} km",
-        "ascent": f"{round(ascent):.0f} m"
+        "ascent": f"{round(ascent):.0f} m",
+        "blog": extra.get("blog",""),
+        "komoot": extra.get("komoot","")
     })
 
-# Remove generated GeoJSON files no longer backed by a GPX.
-keep = {x["file"] for x in manifest}
+keep={x["file"] for x in manifest}
 for f in OUT_DIR.glob("*.geojson"):
-    if f.name not in keep:
-        f.unlink()
+    if f.name not in keep: f.unlink()
 
-(OUT_DIR / "routes.json").write_text(
-    json.dumps(manifest, ensure_ascii=False, indent=2),
-    encoding="utf-8"
-)
+(OUT_DIR/"routes.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 print(f"Built {len(manifest)} route(s).")
