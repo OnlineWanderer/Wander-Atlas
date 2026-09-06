@@ -32,6 +32,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 }).addTo(map);
 
 const allBounds=L.latLngBounds();
+const routeLayers=new Map();
 const routeColors=['#087DFF','#E63946','#8A2BE2','#FF7A00','#00A86B','#D81B60','#00A6A6','#6A5ACD'];
 
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
@@ -64,9 +65,22 @@ async function loadAtlas(){
 
    layer.bindPopup(popup);
    allBounds.extend(layer.getBounds());
+
+   // Save the layer so a Blogger link can open this exact hike.
+   const routeKey=(meta.gpx||meta.file||'').replace(/\.(gpx|geojson)$/i,'').toLowerCase();
+   routeLayers.set(routeKey,layer);
  }
- if(allBounds.isValid()) map.fitBounds(allBounds,{padding:[35,35]});
- else map.setView([52.1,5.3],7);
+ const wanted=(new URLSearchParams(window.location.search).get('route')||'').toLowerCase();
+
+ if(wanted && routeLayers.has(wanted)){
+   const selected=routeLayers.get(wanted);
+   map.fitBounds(selected.getBounds(),{padding:[55,55],maxZoom:14});
+   setTimeout(()=>selected.openPopup(),250);
+ } else if(allBounds.isValid()) {
+   map.fitBounds(allBounds,{padding:[35,35]});
+ } else {
+   map.setView([52.1,5.3],7);
+ }
 }
 loadAtlas().catch(err=>{console.error(err);map.setView([52.1,5.3],7)});
 </script>
