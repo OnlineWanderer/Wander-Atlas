@@ -5,13 +5,13 @@ Kopieer de link van de wandeling die je in een Blogger-post wilt gebruiken.
 ## Montferland
 https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
 
-## conquest of the N70
+## Conquest of the n70
 https://onlinewanderer.github.io/Wander-Atlas/?route=conquestofn70
 
-## fen to fen
+## Fen to Fen
 https://onlinewanderer.github.io/Wander-Atlas/?route=fentofen
 
-## forest to forest
+## Forest to Forest
 https://onlinewanderer.github.io/Wander-Atlas/?route=foresttoforest
 
 ## Midzomeravond
