@@ -10,6 +10,16 @@
     "komoot": ""
   },
   {
+    "file": "foresttoforest.geojson",
+    "gpx": "foresttoforest.gpx",
+    "name": "forest to forest",
+    "date": "2025-03-05",
+    "distance": "16.87 km",
+    "ascent": "200 m",
+    "blog": "",
+    "komoot": ""
+  },
+  {
     "file": "midzomeravond.geojson",
     "gpx": "midzomeravond.gpx",
     "name": "Midzomeravond",
