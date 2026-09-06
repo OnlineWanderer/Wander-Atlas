@@ -5,6 +5,7 @@ on:
     paths:
       - 'gpx/**.gpx'
       - 'scripts/build_routes.py'
+      - 'route-info.json'
   workflow_dispatch:
 
 permissions:
