@@ -2,9 +2,6 @@
 
 Kopieer de link van de wandeling die je in een Blogger-post wilt gebruiken.
 
-## Monthferland
-https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
-
 ## bridge to bridge
 https://onlinewanderer.github.io/Wander-Atlas/?route=bridgetobridge
 

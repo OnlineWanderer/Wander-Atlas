@@ -1,15 +1,5 @@
 [
   {
-    "file": "monthferland.geojson",
-    "gpx": "Monthferland.gpx",
-    "name": "Monthferland",
-    "date": "2026-09-05",
-    "distance": "12.90 km",
-    "ascent": "161 m",
-    "blog": "",
-    "komoot": ""
-  },
-  {
     "file": "bridgetobridge.geojson",
     "gpx": "bridgetobridge.gpx",
     "name": "bridge to bridge",
