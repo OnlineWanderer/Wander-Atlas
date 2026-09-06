@@ -22,12 +22,20 @@ def haversine(a, b):
     h = math.sin(dlat/2)**2 + math.cos(lat1)*math.cos(lat2)*math.sin(dlon/2)**2
     return 2*R*math.asin(math.sqrt(h))
 
-info = {}
-if INFO_FILE.exists():
-    try:
-        info = json.loads(INFO_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        info = {}
+if not INFO_FILE.exists():
+    raise SystemExit("ERROR: route-info.json bestaat niet")
+
+try:
+    info = json.loads(INFO_FILE.read_text(encoding="utf-8"))
+except json.JSONDecodeError as e:
+    raise SystemExit(
+        f"ERROR in route-info.json: {e.msg} "
+        f"(line {e.lineno}, column {e.colno})"
+    )
+
+print("Loaded route-info.json:")
+for key, value in info.items():
+    print(f"  {key}: blog={value.get('blog', '')!r}, komoot={value.get('komoot', '')!r}")
 
 manifest = []
 
