@@ -2,7 +2,7 @@
   {
     "file": "monthferland.geojson",
     "gpx": "Monthferland.gpx",
-    "name": "Montferland",
+    "name": "Monthferland",
     "date": "2026-09-05",
     "distance": "12.90 km",
     "ascent": "161 m",
@@ -22,31 +22,31 @@
   {
     "file": "conquestofn70.geojson",
     "gpx": "conquestofn70.gpx",
-    "name": "Conquest of the n70",
+    "name": "conquest of the N70",
     "date": "2025-03-08",
     "distance": "15.07 km",
     "ascent": "564 m",
-    "blog": "https://the-onlinewanderer.blogspot.com/2025/05/conquest-of-n70-tl025.html",
+    "blog": "",
     "komoot": ""
   },
   {
     "file": "fentofen.geojson",
     "gpx": "fentofen.gpx",
-    "name": "Fen to Fen",
+    "name": "fen to fen",
     "date": "2025-03-10",
     "distance": "8.11 km",
     "ascent": "218 m",
-    "blog": "https://the-onlinewanderer.blogspot.com/2025/03/fen-to-fen-tl026.html",
+    "blog": "",
     "komoot": ""
   },
   {
     "file": "foresttoforest.geojson",
     "gpx": "foresttoforest.gpx",
-    "name": "Forest to Forest",
+    "name": "forest to forest",
     "date": "2025-03-05",
     "distance": "16.87 km",
     "ascent": "200 m",
-    "blog": "https://the-onlinewanderer.blogspot.com/2025/03/forest-to-forest-tl024.html",
+    "blog": "",
     "komoot": ""
   },
   {

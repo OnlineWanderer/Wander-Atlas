@@ -2,19 +2,19 @@
 
 Kopieer de link van de wandeling die je in een Blogger-post wilt gebruiken.
 
-## Montferland
+## Monthferland
 https://onlinewanderer.github.io/Wander-Atlas/?route=monthferland
 
 ## bridge to bridge
 https://onlinewanderer.github.io/Wander-Atlas/?route=bridgetobridge
 
-## Conquest of the n70
+## conquest of the N70
 https://onlinewanderer.github.io/Wander-Atlas/?route=conquestofn70
 
-## Fen to Fen
+## fen to fen
 https://onlinewanderer.github.io/Wander-Atlas/?route=fentofen
 
-## Forest to Forest
+## forest to forest
 https://onlinewanderer.github.io/Wander-Atlas/?route=foresttoforest
 
 ## Midzomeravond
