@@ -14,7 +14,7 @@ https://onlinewanderer.github.io/Wander-Atlas/?route=fentofen
 ## Forest to Forest
 https://onlinewanderer.github.io/Wander-Atlas/?route=foresttoforest
 
-## mwm
+## mega wandel marathon
 https://onlinewanderer.github.io/Wander-Atlas/?route=megawandelmarathon
 
 ## Midzomeravond
