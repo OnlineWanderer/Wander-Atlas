@@ -40,6 +40,16 @@
     "komoot": ""
   },
   {
+    "file": "megawandelmarathon.geojson",
+    "gpx": "megawandelmarathon.gpx",
+    "name": "mwm",
+    "date": "2026-05-30",
+    "distance": "23.61 km",
+    "ascent": "313 m",
+    "blog": "",
+    "komoot": ""
+  },
+  {
     "file": "midzomeravond.geojson",
     "gpx": "midzomeravond.gpx",
     "name": "Midzomeravond",
