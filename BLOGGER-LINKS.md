@@ -22,3 +22,6 @@ https://onlinewanderer.github.io/Wander-Atlas/?route=midzomeravond
 
 ## Montferland
 https://onlinewanderer.github.io/Wander-Atlas/?route=montferland
+
+## swamp/bridges
+https://onlinewanderer.github.io/Wander-Atlas/?route=swamp&bridges

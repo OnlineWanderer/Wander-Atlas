@@ -68,5 +68,15 @@
     "ascent": "305 m",
     "blog": "https://the-onlinewanderer.blogspot.com/2026/03/montferland-tl034.html",
     "komoot": "https://www.komoot.com/nl-nl/tour/3259772830"
+  },
+  {
+    "file": "swamp-bridges.geojson",
+    "gpx": "swamp&bridges.gpx",
+    "name": "swamp/bridges",
+    "date": "2026-06-08",
+    "distance": "5.74 km",
+    "ascent": "77 m",
+    "blog": "",
+    "komoot": ""
   }
 ]
