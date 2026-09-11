@@ -72,11 +72,11 @@
   {
     "file": "swamp-bridges.geojson",
     "gpx": "swamp&bridges.gpx",
-    "name": "swamp/bridges",
+    "name": "swamp&bridges",
     "date": "2026-06-08",
     "distance": "5.74 km",
     "ascent": "77 m",
-    "blog": "",
-    "komoot": ""
+    "blog": "https://the-onlinewanderer.blogspot.com/2026/09/de-moerputten-hike-vlijmen.html",
+    "komoot": "https://www.komoot.com/nl-nl/tour/3023106070"
   }
 ]
